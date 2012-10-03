@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./resources/template/pdhs_template_1.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="content">
+        <h:form >
+            <p:growl autoUpdate="true" />
+            <p:panel header="#{labels.addCase}" >
+                <h:panelGrid id ="gpVeda" columns="2" >
+                    <h:outputText  value="AG database registration no"></h:outputText>
+                    <h:inputText value="#{childCaseController.current.agDatabaseRegistrationNo}"  ></h:inputText>
+                    <h:outputText  value="AG dept. file no."></h:outputText>
+                    <h:inputText value="#{childCaseController.current.agDeptFileNo }"  ></h:inputText>
+                    <h:outputText  value="Police Director (Crimes) reference "></h:outputText>
+                    <h:inputText value="#{childCaseController.current.policeDirectorCrimesReference }"  ></h:inputText>
+                    <h:outputText  value="Police Station"></h:outputText>
+                    <h:selectOneListbox value="#{childCaseController.current.policeStation }" >
+                        <f:selectItems value="#{policeStationController.items}" var="ps" itemValue="#{ps}" itemLabel="#{ps.name}" />
+                    </h:selectOneListbox>
+                    <h:outputText  value="Date of Complaint/ First Information"></h:outputText>
+                    <p:calendar  pattern="dd/MM/yyyy" value ="#{childCaseController.current.dateOfComplaintFirstInformation }"  ></p:calendar>
+                    <h:outputText  value="Name of the complainant / Informant"></h:outputText>
+                    <h:inputText   ></h:inputText>
+                    <h:outputText  value="Name of the allegation"></h:outputText>
+                    <h:inputText value="#{childCaseController.current.nameOfTheAllegation }"  ></h:inputText>
+                    <h:outputText  value="Date of offence"></h:outputText>
+                    <p:calendar  pattern="dd/MM/yyyy" value ="#{childCaseController.current.dateOfoffence }"  ></p:calendar>
+
+
+
+                    <h:outputText  value="Name of the victim(s)"></h:outputText>
+                    <h:inputText   ></h:inputText>
+                    <h:outputText  value="Gender"></h:outputText>
+                    <h:inputText   ></h:inputText>
+                    <h:outputText  value="Age"></h:outputText>
+                    <h:inputText  ></h:inputText>
+
+
+                    <h:outputText  value="Date in which the report was received by AG"></h:outputText>
+                    <p:calendar  pattern="dd/MM/yyyy" value ="#{childCaseController.current.dateInWhichTheReportWasReceivedByAb }"  ></p:calendar>
+
+                    <h:outputText  value="Magistrate court"></h:outputText>
+                    <h:selectOneListbox value="#{childCaseController.current.court}" >
+                        <f:selectItems value="#{courtController.items}" var="court" itemValue="#{court}" itemLabel="#{court.name}" />
+                    </h:selectOneListbox>
+
+                    <h:outputText  value="B report no."></h:outputText>
+                    <h:inputText value="#{childCaseController.current.breportNo}"  ></h:inputText>
+
+                    <h:outputText  value="Supervising officer"></h:outputText>
+                    <h:inputText   ></h:inputText>
+
+                    <h:outputText  value="SC / Attorney"></h:outputText>
+                    <h:inputText   ></h:inputText>
+
+                    <h:outputText  value="Date on which the IBEs were received"></h:outputText>
+                    <p:calendar  pattern="dd/MM/yyyy" value ="#{childCaseController.current.dateOnWhichTheIbesWereReceived}"  ></p:calendar>
+
+                    <h:outputText  value="Date on which the MLR was received"></h:outputText>
+                    <p:calendar  pattern="dd/MM/yyyy" value ="#{childCaseController.current.dateOnWhichTheMlrWasReceived }"  ></p:calendar>
+
+                    <h:outputText value="Name of the suspect(s)"></h:outputText>
+                    <h:inputText  id="txtSusName" value="#{childCaseController.suspectsName}"  ></h:inputText>
+                    <h:outputText  value="Gender"></h:outputText>
+                    <h:inputText value="#{childCaseController.suspectsDesignation}"  ></h:inputText>
+                    <h:outputText  value="Age"></h:outputText>
+                    <h:inputText  value="#{childCaseController.suspectsAge}" ></h:inputText>
+                    <h:commandButton id="btnAddSuspect" value="Add Suspect" action="#{childCaseController.addSuspect}" >
+                        <f:ajax execute="btnAddSuspect txtSusName" render="lstSus txtSusName" />
+                    </h:commandButton>
+                    
+                    <h:selectOneListbox id="lstSus" value="#{childCaseController.currentCs}" >
+                        <f:selectItems value="#{childCaseController.caseSuspects}" var="css" itemValue="#{css}" itemLabel="#{css.suspect.person.name}" />
+                    </h:selectOneListbox>
+                    
+                    <h:outputText  value="Suspect’s position viz victim"></h:outputText>
+                    <h:inputText   ></h:inputText>
+                    <h:outputText  value="Suspect’s employment"></h:outputText>
+                    <h:inputText  ></h:inputText>
+
+                    <h:outputText  value="Location of the incident"></h:outputText>
+                    <h:selectOneListbox value="#{childCaseController.current.province}" >
+                        <f:selectItems value="#{provinceController.items}" var="prov" itemLabel="#{prov.name}" itemValue="#{prov}" />
+                    </h:selectOneListbox>
+
+
+                    <h:outputText  value="Name of the investigating officer"></h:outputText>
+                    <h:inputText   ></h:inputText>
+
+                    <h:outputText  value="AG’s decision"></h:outputText>
+                    <h:inputText value="#{childCaseController.current.agsDecision }"  ></h:inputText>
+
+                    <h:outputText  value="Date of the indictment"></h:outputText>
+                    <p:calendar  pattern="dd/MM/yyyy" value ="#{childCaseController.current.dateoftheindictment }"  ></p:calendar>
+
+                    <h:outputText  value="Trail court"></h:outputText>
+                    <h:inputText   ></h:inputText>
+
+                    <h:outputText  value="Case No."></h:outputText>
+                    <h:inputText value="#{childCaseController.current.caseNo }"  ></h:inputText>
+
+                    <h:outputText  value="Trail Commencement date"></h:outputText>
+                    <p:calendar  pattern="dd/MM/yyyy" value ="#{childCaseController.current.trailCommencementDate }"  ></p:calendar>
+
+
+
+
+
+
+
+                    <h:commandButton id="btnSave" value="#{labels.save}"  action="#{childCaseController.saveSelected()}" styleClass="buttons">
+                    </h:commandButton>
+
+                </h:panelGrid>
+            </p:panel>
+        </h:form>        
+
+
+
+    </ui:define>
+
+</ui:composition>
